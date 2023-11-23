@@ -37,7 +37,7 @@ def score_classifier(dataset,classifier,labels):
 
 
 # Load dataset
-df = pd.read_csv(".\\nba_logreg.csv")
+df = pd.read_csv("./data/nba_logreg.csv")
 
 # extract names, labels, features names and values
 names = df['Name'].values.tolist() # players names
