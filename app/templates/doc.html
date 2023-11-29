@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation API - NBA Prediction</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .endpoint { background-color: #f4f4f4; padding: 10px; margin-top: 20px; }
+        .description { margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Documentation API - NBA Prediction</h1>
+
+    <section class="endpoint">
+        <h2>POST /predict</h2>
+        <p class="description">Endpoint pour obtenir des prédictions sur les joueurs de la NBA.</p>
+        
+        <h3>Requête</h3>
+        <p>Type de contenu : application/json</p>
+        <p>Corps de la requête : </p>
+        <pre>{
+    "GP": 50,
+    "PTS": 20,
+    "FGM": 8,
+    "MIN": 30,
+    "FTA": 10,
+    "FTM": 7,
+    "REB": 10,
+    "OREB": 3,
+    "FGA": 15
+}</pre>
+
+        <h3>Réponse</h3>
+        <p>Code de réussite : 200 OK</p>
+        <p>Corps de la réponse : </p>
+        <pre>{
+    "prediction": "success"
+}</pre>
+        <p>Codes d'erreur possibles : 400 Bad Request (si des données manquantes ou incorrectes sont fournies)</p>
+    </section>
+</body>
+</html>
