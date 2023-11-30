@@ -1,31 +1,40 @@
-from .models.model_utils import load_model, preprocess_data
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+from src.model_utils import load_model 
+from src.data_processing import preprocessing
 import pandas as pd
 
-def validate_input(data):
+def is_numeric(value):
+    return isinstance(value, (int, float)) or (isinstance(value, list) and all(isinstance(item, (int, float)) for item in value))
 
-    # Check if data is a dictionary
+def validate_input(data):
     required_fields = ['GP', 'PTS', 'FGM', 'MIN', 'FTA', 'FTM', 'REB', 'OREB', 'FGA']
     missing_fields = [field for field in required_fields if field not in data]
     if missing_fields:
         return False, f"Champs manquants: {', '.join(missing_fields)}"
 
-    # Check lenght of each field
-    first_length = len(data[required_fields[0]])
+    lengths = []
     for field in required_fields:
-        if len(data[field]) != first_length:
-            return False, f"Le champ {field} n'a pas la même longueur que les autres champs"
-        
-    # Check if each field is numeric
-    for field in required_fields:
-        if not data[field].isnumeric():
-            return False, f"Le champ {field} n'est pas numérique"
-        
-    # Check if each field is positive
-    for field in required_fields:
-        if data[field] < 0:
-            return False, f"Le champ {field} n'est pas positif"
+        value = data[field]
+        if not is_numeric(value):
+            return False, f"Le champ {field} doit être numérique ou une liste de valeurs numériques."
+
+        if isinstance(value, list):
+            lengths.append(len(value))
+            if any(item < 0 for item in value):
+                return False, f"Tous les éléments du champ {field} doivent être positifs."
+        else:
+            if value < 0:
+                return False, f"Le champ {field} doit être positif."
+
+    if lengths and not all(length == lengths[0] for length in lengths):
+        return False, "Toutes les listes doivent avoir la même longueur."
 
     return True, ""
+
 
 
 
@@ -34,13 +43,19 @@ def make_prediction(data):
 
     df = pd.DataFrame(data, index=[0])
 
-    processed_data = preprocess_data(df)
+    processed_data = preprocessing(df)
 
-    prediction = model.predict(processed_data)
+    prediction = model.predict(processed_data).tolist()
+    probabilities = model.predict_proba(processed_data).tolist()
+    probabilities_1 = [item[1] for item in probabilities]
+
 
     response = {
-        'prediction': prediction[0]
+        'prediction': prediction,
+        'probabilities of class 1': probabilities_1,
     }
+
+
 
     return response
 
