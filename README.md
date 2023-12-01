@@ -36,8 +36,11 @@ The project directory is structured as follows:
 - `models/` - Stores the serialized model file.
 - `notebooks/` - Includes Jupyter notebooks for data analysis, exploration, preprocessing, and model exploration.
 - `src/` - Contains utility scripts for data processing and model operations.
-- `test.py` - A Python script that was initially here.
+- `test.py` - A Python script that was initially here to start on the project.
 - `requirements.txt` - Lists the Python dependencies for the project.
+- `README.md` - The top-level README for developers using this project.
+- `test_junior_ds[1].pdf` - The rules for this project and insight about data structure.
+
 
 ### Notebooks
 
