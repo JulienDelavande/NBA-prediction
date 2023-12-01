@@ -9,7 +9,7 @@
     (on supprimera la variable catégoriel Names qui ne nous sera pas utile)
 - valeurs manquantes: `3P%` contient 11 NAN qui correspondent aux joueurs n'ayant pas marqués de 3 points 
     (on pourra les remplacer par 0)
-- distribution de la target: 1.0=0.620149, 0.0=0.379851 
+- distribution de la target: 1=0.620149, 0=0.379851 
     (on a une distribution assez équilibrée, mais un rééquilabrage sera peut etre nécessaire)
 - duplication de lignes: 12 lignes dupliquées, des joueurs ayant les mêmes noms ont été relevés mais pas les mêmes stats
     (on supprimera les lignes dupliquées)
