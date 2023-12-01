@@ -1,6 +1,5 @@
 # Analyse des données
 
-
 ## Analyse de forme
 
 - varaible cible: `TARGET_5Yrs`
@@ -13,7 +12,6 @@
     (on a une distribution assez équilibrée, mais un rééquilabrage sera peut etre nécessaire)
 - duplication de lignes: 12 lignes dupliquées, des joueurs ayant les mêmes noms ont été relevés mais pas les mêmes stats
     (on supprimera les lignes dupliquées)
-
 
 ## Analyse de fond
 
