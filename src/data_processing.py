@@ -1,13 +1,23 @@
-import pandas as pd
+import numpy as np
 
 def preprocessing(data):
-    #data = data.drop(['Name'], axis=1)
-    #data.loc[:, '3P%'] = data.loc[:, '3P%'].fillna(0)
-    #data = data.drop_duplicates()
+    """
+    Preprocess the data before making the prediction.
+    
+    Parameters
+    ----------
+    data : pandas.DataFrame
+        Data to preprocess.
+    
+    Returns
+    -------
+    data : pandas.DataFrame
+        Preprocessed data.
+    """
 
-    features = ['GP', 'PTS', 'FGM', 'MIN', 'FTA', 'FTM', 'REB', 'OREB', 'FGA']
-
+    features = ['GP', 'FTM', 'OREB', 'STL', 'BLK', 'AST']
     data = data[features]
+    data = np.log1p(data)
 
     return data
 

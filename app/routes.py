@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify
-
 from views import make_prediction, validate_input
 
 app = Flask(__name__)
@@ -100,3 +99,4 @@ if __name__ == '__main__':
     app.run(debug=DEBUG, 
             port=PORT,
             host=HOST)
+    
